@@ -1,0 +1,68 @@
+<!-- Scrivere un documento HTML la cui interpretazione produce una pagina così specificata. 
+Lo schermo è diviso in tre zone. Nella parte in alto, sono presenti 6 immagini piccole rappresentanti altrettanti prodotti. 
+L'attivazione di un link associato a ogni immagine piccola presenta la preview ingrandita della stessa neila zona centrale della pagina. 
+Nella parte in basso, è presente una form di richiesta di spedizione del prodotto selezionato (campi suggeriti: Nome, Email, Indirizzo).
+N.B. Non è richiesto (ma gradito) che il codice sia perfettamente funzionante.-->
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        img {
+            width: 50px;
+            height: 50px;
+        }
+
+        #center {
+            width: 300px;
+            height: 300px;
+        }
+
+        #center img {
+            width: auto;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="top" style="flex: content;">
+            <img src="https://picsum.photos/id/100/400/300" alt="Immagine 1" onclick="zoom(this)">
+            <img src="https://picsum.photos/id/200/200/600" alt="Immagine 2" onclick="zoom(this)">
+            <img src="https://picsum.photos/id/300/400/300" alt="Immagine 3" onclick="zoom(this)">
+            <img src="https://picsum.photos/id/400/200/700" alt="Immagine 4" onclick="zoom(this)">
+            <img src="https://picsum.photos/id/500/500/300" alt="Immagine 5" onclick="zoom(this)">
+            <img src="https://picsum.photos/id/600/200/100" alt="Immagine 6" onclick="zoom(this)">
+        </div>
+        <div id="center">
+
+        </div>
+        <div id="bottom">
+            <h1>Spedizione</h1>
+            <form>
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" required>
+                <br>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <br>
+                <label for="indirizzo">Indirizzo</label>
+                <input type="text" id="indirizzo" name="indirizzo" required>
+                <br>
+                <input type="submit" value="Invia">
+            </form>
+        </div>
+    </div>
+    <script>
+        function zoom(img) {
+            const center = document.getElementById('center');
+            
+            center.innerHTML = img.outerHTML; // Aggiunge l'immagine ingrandita al centro
+        }
+
+    </script>
+</body>
+</html>

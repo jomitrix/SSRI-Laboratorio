@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+package-lock.json.backup
+
+# Environments and secrets
+.env
+.env.*
+*.env
+*.key
+*.pem
+
+# Compilation artifacts & object files
+*.o
+*.obj
+*.out
+*.hex
+*.bin
+*.lst
+*.sym
+*.i
+*.s
+*.class
+
+# Executables (preserving LC2 tools)
+*.exe
+!ARCHITETTURA_ELABORATORI/.LC2-environment/*.exe
+
+# Logs and system files
+*.log
+wget-log*
+.DS_Store
+Thumbs.db
+
+# OS / VM Disk images and large archives
+SISTEMI_OPERATIVI/par1/solab1.iso
+SISTEMI_OPERATIVI/par2/solab2.iso
+SISTEMI_OPERATIVI/par2/L2/persistence-jos-L2s.qc1.qcow
+SISTEMI_OPERATIVI/par2/L2/persistence-jos-L2start.qc1.qcow

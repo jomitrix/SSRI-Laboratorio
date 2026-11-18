@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        <form id="form">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            <br>
+            <label for="pwd">Password</label>
+            <input type="password" name="pwd" id="pwd">
+            <br>
+            <button type="button" onclick="login()">Invia</button>
+        </form>
+    </div>
+
+    <script>
+        function login() {
+            const email = document.getElementById("email").value;
+            const pwd = document.getElementById("pwd").value;
+
+            fetch("http://localhost:3000/user/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email, pwd })
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                if (!json.error) {
+                    console.log("Login effettuato con successo.");
+                } else {
+                    console.error(json.error + ": " + json.message);
+                }
+            })
+            .catch((error) => {
+                console.error("Errore di rete o del server:", error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>The Movie Database (TMDB)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="popolari.html">
+                <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" alt="TMDB" height="18">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="popolari.html">Popular</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="scheda-film.html">Movie Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" aria-disabled="true">Actor Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="utente.html">My Profile</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        <div class="container-md">
+            <div class="row bg-warning-subtle rounded p-md-4 p-3">
+                <div class="col-md-3 p-0">
+                    <img id="profile" class="img-fluid rounded"
+                        src="https://image.tmdb.org/t/p/w1280">
+                </div>
+                <div class="col-md-9 ps-md-4">
+                    <h1 class="mt-3 mt-md-0 fw-bold" id="name"></h1>
+                    <div>
+                        <h3 class="mt-3">Biography</h3>
+                        <p id="biography"></p>
+                    </div>
+                    <div class="row mt-3">
+                        <h3>Personal Info</h5>
+                        
+                        <div class="row mb-2">
+                            <div class="col-md">
+                                <span class="fw-bold">Also Known As:</span>
+                                <span id="also_known_as"></span>
+                            </div>
+                            <div class="col-md">
+                                <span class="fw-bold">Known For:</span>
+                                <span id="known_for_department"></span>
+                            </div>
+                            <div class="col-md">
+                                <span class="fw-bold">Gender:</span>
+                                <span id="gender"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md">
+                                <span class="fw-bold">Birthday:</span>
+                                <span id="birthday"></span>
+                            </div>
+                            <div class="col-md">
+                                <span class="fw-bold">Day of Death:</span>
+                                <span id="deathday"></span>
+                            </div>
+                            <div class="col-md">
+                                <span class="fw-bold">Place of Birth:</span>
+                                <span id="place_of_birth"></span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="row">
+                    <h3>Known For</h3>
+                </div>
+                <div class="row flex-nowrap overflow-auto">
+                    <div id="modelloFilm" class="col-auto mb-3 d-none">
+                        <div class="card" style="width: 11rem;">
+                            <img src="https://media.themoviedb.org/t/p/w276_and_h350_face" class="card-img-top" >
+                            <div class="card-body">
+                              <h5 class="card-title"></h5>
+                              <p class="card-text text-secondary"></p>
+                              <a href="scheda-film.html?id=" class="btn btn-primary">Read more</a>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="lib.js"></script>
+    <script>
+        var parametri = new URLSearchParams(window.location.search);
+        var id_attore = parametri.get("id");
+        var lang = parametri.get("lang");
+
+        // Genera dati attore
+
+        fetch(`https://api.themoviedb.org/3/person/${id_attore}?language=${lang}&api_key=${api_key}`)
+            .then(res => res.json())
+            .then(actor_data => {
+                document.getElementById("name").innerHTML = actor_data.name;
+
+                if (actor_data.profile_path != null) document.getElementById("profile").src += actor_data.profile_path;
+                else document.getElementById("profile").src = "https://placehold.co/1280x1920/d6d8db/6c757d/?text=Profile+Missing";
+
+                for (i = 0; i < actor_data.also_known_as.length; i++) {
+                    document.getElementById("also_known_as").innerHTML += actor_data.also_known_as[i];
+                    if (i != actor_data.also_known_as.length-1) document.getElementById("also_known_as").innerHTML += ", ";
+                }
+                if (actor_data.also_known_as == "") document.getElementById("also_known_as").innerHTML = "–";
+                document.getElementById("known_for_department").innerHTML = actor_data.known_for_department;
+                
+                let gender = "";
+
+                switch (actor_data.gender) {
+                    case 2: 
+                        gender = "Male";
+                        break;
+                    case 1:
+                        gender = "Female";
+                        break;
+                    case 3: 
+                        gender = "Non-binary";
+                        break;
+                    default:
+                        gender = "Not set / not specified";
+                        break;
+                }
+                document.getElementById("gender").innerHTML = gender;
+                document.getElementById("place_of_birth").innerHTML = actor_data.place_of_birth;
+
+
+
+                document.getElementById("birthday").innerHTML = new Date(actor_data.birthday).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+                document.getElementById("deathday").innerHTML = new Date(actor_data.deathday).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+                document.getElementById("place_of_birth").innerHTML = actor_data.place_of_birth;
+
+                if (actor_data.biography != "") document.getElementById("biography").innerText = actor_data.biography
+                else document.getElementById("biography").innerText = "Biography not available.";
+
+                document.title = actor_data.name + " — The Movie Database (TMDB)";
+            });
+
+            // Riempi scrollable film recitati
+            var modello = document.getElementById("modelloFilm")
+            fetch(`https://api.themoviedb.org/3/person/${id_attore}/movie_credits?language=${lang}&api_key=YOUR_TMDB_API_KEY`)
+            .then(res => res.json())
+            .then(actor_movies => {
+                for (i = 0; i < actor_movies.cast.length; i++) {
+                    var clone = modello.cloneNode(true);
+                    var movies = actor_movies.cast;
+                
+                    clone.getElementsByClassName("card-title")[0].innerHTML = movies[i].title;
+                    clone.getElementsByClassName("card-text")[0].innerHTML = new Date(movies[i].release_date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+                    clone.getElementsByTagName("a")[0].href += `${movies[i].id}&lang=${lang}`;
+                    if (movies[i].poster_path != null) clone.getElementsByTagName("img")[0].src += movies[i].poster_path;
+                    else clone.getElementsByTagName("img")[0].src = "https://placehold.co/276x350/d6d8db/6c757d/?text=No+Image";
+                    
+                    clone.id = movies[i].id;
+                    clone.classList.remove('d-none');
+                    modello.before(clone);
+                }
+            });
+    </script>
+</body>
+
+</html>

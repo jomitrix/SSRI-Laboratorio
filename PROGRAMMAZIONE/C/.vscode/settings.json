@@ -1,0 +1,19 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "string.h": "c",
+        "chrono": "c",
+        "cmath": "c",
+        "linked-list-arent-real.C": "cpp",
+        "numbers": "cpp",
+        "stdlib.h": "c",
+        "random": "c",
+        "bitset": "c",
+        "algorithm": "c",
+        "format": "c",
+        "sstream": "c",
+        "complex": "c",
+        "cstring": "c"
+    },
+    "editor.fontFamily": "Hack"
+}

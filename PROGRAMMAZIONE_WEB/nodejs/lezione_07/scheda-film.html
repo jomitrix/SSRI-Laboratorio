@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>The Movie Database (TMDB)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="popolari.html">
+                <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" alt="TMDB" height="18">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="popolari.html">Popular</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Movie Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="scheda-attore.html" aria-disabled="true">Actor Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="utente.html">My Profile</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        <div class="container-md">
+            <div class="row bg-primary-subtle rounded p-md-4 p-3">
+                <div class="col-md-3 p-0">
+                    <img id="poster" class="img-fluid rounded"
+                        src="https://image.tmdb.org/t/p/w1280">
+                </div>
+                <div class="col-md-9 ps-md-4">
+                    <h1 class="mt-3 mt-md-0 fw-bold" id="title"></h1>
+                    <div class="row">
+                        <div class="col fst-italic" id="release_date"></div>
+                        <div class="col fst-italic" id="generi"></div>            
+                    </div>
+                    <div class="row mt-3">
+                        <h3>Rating</h5>
+                            <div class="row"><div id="rating"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg></div></div>
+                            <div class="row"><div id="votanti"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                              </svg></div></div>
+
+                              <div id="vota" class="row">
+                                <div class="col-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                      </svg>
+                                </div>
+                                <div class="col-lg-2 col-auto p-0 me-1">
+                                    <input type="number" class="form-control form-control-sm id="voteInput" name="vote" min="0" max="10" placeholder="0-10">
+                                </div>
+                                <div class="col-auto p-0">
+                                    <input type="button" class="btn btn-sm btn-primary" value="Vota">
+                                </div>
+                            </div>
+                            
+                    </div>
+                    <div>
+                        <h3 class="mt-3">Overview</h3>
+                        <p id="overview"></p>
+                    </div>
+
+                    <!-- Non implementato-->
+                    <div class="row d-none">
+                        <div class="col">
+                            Bong Joon Ho
+                            <br>
+                            Director, Writer
+                        </div>
+    
+                        <div class="col">
+                            Edward Ashton
+                            <br>
+                            Novel
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="row">
+                    <h3>Cast</h3>
+                </div>
+                <div class="row flex-nowrap overflow-auto">
+                    <div id="modelloAttori" class="col-auto mb-3 d-none">
+                        <div class="card" style="width: 11rem;">
+                            <img src="https://media.themoviedb.org/t/p/w276_and_h350_face" class="card-img-top" >
+                            <div class="card-body">
+                              <h5 class="card-title"></h5>
+                              <p class="card-text text-secondary"></p>
+                              <a href="scheda-attore.html?id=" class="btn btn-primary">Read more</a>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- <script src="popolari.js"></script> -->
+    <script>
+        const api_key = 'YOUR_TMDB_API_KEY';
+        var parametri = new URLSearchParams(window.location.search);
+        var id_film = parametri.get("id");
+        var lang = parametri.get("lang");
+
+        // Genera dati film
+
+        fetch(`https://api.themoviedb.org/3/movie/${id_film}?language=${lang}&api_key=${api_key}`)
+            .then(res => res.json())
+            .then(film_data => {
+                document.getElementById("title").innerHTML = film_data.title;
+
+                if (film_data.poster_path != null) document.getElementById("poster").src += document.getElementById("poster").src += film_data.poster_path;
+                else document.getElementById("poster").src = "https://placehold.co/1280x1920/d6d8db/6c757d/?text=Poster+Missing";
+
+                document.getElementById("release_date").innerHTML = new Date(film_data.release_date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+                document.getElementById("rating").innerHTML += " " + film_data.vote_average + "/10";
+                document.getElementById("votanti").innerHTML += " " + film_data.vote_count;
+                if (film_data.overview != "") document.getElementById("overview").innerHTML = film_data.overview
+                else document.getElementById("overview").innerHTML = "Overview not available.";
+                
+                for (i = 0; i < film_data.genres.length; i++) {
+                    document.getElementById("generi").innerHTML += (film_data.genres[i].name);
+                    if (i != (film_data.genres.length-1)) document.getElementById("generi").innerHTML += ", ";
+                }
+
+                document.title = film_data.title + " — The Movie Database (TMDB)";
+            });
+
+            // Riempi scrollable attori
+            var modello = document.getElementById("modelloAttori")
+            fetch(`https://api.themoviedb.org/3/movie/${id_film}/credits?language=${lang}&api_key=YOUR_TMDB_API_KEY`)
+            .then(res => res.json())
+            .then(membri_film => {
+                for (i = 0; i < membri_film.cast.length; i++) {
+                    var clone = modello.cloneNode(true);
+                    var attori_film = membri_film.cast;
+                
+                    clone.getElementsByClassName("card-title")[0].innerHTML = attori_film[i].character;
+                    clone.getElementsByClassName("card-text")[0].innerHTML = attori_film[i].original_name;
+                    clone.getElementsByTagName("a")[0].href += `${attori_film[i].id}&lang=${lang}`;
+                    if (attori_film[i].profile_path != null) clone.getElementsByTagName("img")[0].src += attori_film[i].profile_path;
+                    else clone.getElementsByTagName("img")[0].src = "https://placehold.co/276x350/d6d8db/6c757d/?text=No+Image";
+                    
+                    clone.id = attori_film[i].id;
+                    clone.classList.remove('d-none');
+                    modello.before(clone);
+                }
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">PWM</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="popolari.html">Popolari</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="scheda-film.html">Scheda Film</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="utente.html">Profilo Utente</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row m-3 text-center">
+            <h1>Film del Momento</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="card">
+                    <img id = "copertina" src="https://media.themoviedb.org/t/p/w440_and_h660_face/mwzDApMZAGeYCEVjhegKvCzDX0W.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title" id="titolo">Cleaner</h5>
+                      <p class="card-text text-secondary" id="descrizione">2025-02-10</p>
+                      <a href="scheda-film.html" id="scheda" class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="card">
+                    <img id="copertina1" src="https://media.themoviedb.org/t/p/w440_and_h660_face/mClzWv7gBqgXfjZXp49Enyoex1v.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title" id="titolo1">Cosmic Chaos</h5>
+                      <p class="card-text text-secondary" id="descrizione1">2023-08-03</p>
+                      <a href="scheda-film.html" id="scheda1" class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="https://media.themoviedb.org/t/p/w440_and_h660_face/pzIddUEMWhWzfvLI3TwxUG2wGoi.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Captain America: Brave New World</h5>
+                      <p class="card-text text-secondary">2025-02-12</p>
+                      <a href="scheda-film.html" class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    
+    <script src="popolari.js"></script>
+    <script>
+        var base_url = "https://image.tmdb.org/t/p/w440_and_h660_face/";
+        var titolo = document.getElementById("titolo");
+        var descrizione = document.getElementById("descrizione");
+        var locandina = document.getElementById("locandina");
+        var scheda = document.getElementById("scheda");
+
+        titolo.innerHTML = popolari.results[0].title;
+        copertina.src = base_url + popolari.results[0].poster_path;
+        descrizione.innerHTML = popolari.results[0].release_date;
+        scheda.href = "scheda-film.html?id=" + popolari.results[0].id;
+
+        var titolo1 = document.getElementById("titolo1");
+        var descrizione1 = document.getElementById("descrizione1");
+        var locandina1 = document.getElementById("locandina1");
+        var scheda1 = document.getElementById("scheda1");
+
+        titolo1.innerHTML = popolari.results[1].title;
+        copertina1.src = base_url + popolari.results[1].poster_path;
+        descrizione1.innerHTML = popolari.results[1].release_date;
+        scheda1.href = "scheda-film.html?id=" + popolari.results[1].id;
+    </script>
+</body>
+
+</html>

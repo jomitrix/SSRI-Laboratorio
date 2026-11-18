@@ -1,0 +1,63 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <table>
+  <tr>
+    <th>Provincia</th>
+    <th>Residenti</th>
+    <th>%Italia</th>
+    <th>Superficie (kmq)</th>
+    <th>Densità per kmq</th>
+    <th>Num. Comuni</th>
+    <th>Sigla</th>
+  </tr>
+  <tr><td>Bergamo</td><td>1.094.062</td><td>1,8%</td><td>2.723</td><td>401,8</td><td>244</td><td>BG</td></tr>
+  <tr><td>Brescia</td><td>1.221.192</td><td>2,1%</td><td>4.784</td><td>255,3</td><td>206</td><td>BS</td></tr>
+  <tr><td>Como</td><td>592.504</td><td>1,0%</td><td>1.288</td><td>460,0</td><td>160</td><td>CO</td></tr>
+  <tr><td>Cremona</td><td>361.812</td><td>0,6%</td><td>1.771</td><td>204,3</td><td>115</td><td>CR</td></tr>
+  <tr><td>Lecco</td><td>338.425</td><td>0,6%</td><td>816</td><td>414,7</td><td>90</td><td>LC</td></tr>
+  <tr><td>Lodi</td><td>225.798</td><td>0,4%</td><td>782</td><td>288,7</td><td>61</td><td>LO</td></tr>
+  <tr><td>Mantova</td><td>411.335</td><td>0,7%</td><td>2.339</td><td>175,9</td><td>70</td><td>MN</td></tr>
+  <tr><td>Milano</td><td>3.075.083</td><td>5,2%</td><td>1.579</td><td>1.947,6</td><td>134</td><td>MI</td></tr>
+  <tr><td>Monza e della Brianza</td><td>850.684</td><td>1,4%</td><td>405</td><td>2.097,9</td><td>55</td><td>MB</td></tr>
+  <tr><td>Pavia</td><td>539.569</td><td>0,9%</td><td>2.965</td><td>182,0</td><td>190</td><td>PV</td></tr>
+  <tr><td>Sondrio</td><td>180.271</td><td>0,3%</td><td>3.212</td><td>56,1</td><td>77</td><td>SO</td></tr>
+  <tr><td>Varese</td><td>876.960</td><td>1,5%</td><td>1.199</td><td>731,6</td><td>141</td><td>VA</td></tr>
+  <tr><td>Totale</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+    </body>
+
+    <script>
+    let table = document.getElementsByTagName("table")[0];
+    let rows = table.getElementsByTagName("tr");
+
+    let numCols = rows[1].getElementsByTagName("td").length;
+    let results = Array(numCols).fill(0);
+
+    for (let i = 1; i < rows.length - 1; i++) {
+        let cols = rows[i].getElementsByTagName("td");
+        for (let j = 1; j < cols.length - 1; j++) {
+            let text = cols[j].innerText
+                .split(".").join("")       // senza regex
+                .replace("%", "")
+                .replace(",", ".");
+            let plainNumber = parseFloat(text);
+            if (!isNaN(plainNumber)) {
+                results[j] += plainNumber;
+            }
+        }
+    }
+
+    // Inserimento risultati nella riga "Totale"
+    let totalRow = rows[rows.length - 1];
+    let totalCols = totalRow.getElementsByTagName("td");
+
+    for (let i = 1; i < totalCols.length - 1; i++) {
+        totalCols[i].innerText = results[i];
+    }
+</script>
+
+</html>
